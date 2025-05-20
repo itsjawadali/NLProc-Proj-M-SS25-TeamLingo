@@ -1,0 +1,27 @@
+[
+  {
+    "question": "What are the main causes of global warming?",
+    "expected_keywords": ["greenhouse gases", "carbon dioxide", "deforestation", "fossil fuels"],
+    "group_id": "environment_causes"
+  },
+  {
+    "question": "How can renewable energy help the environment?",
+    "expected_keywords": ["solar", "wind", "reduce emissions", "sustainable"],
+    "group_id": "renewable_energy"
+  },
+  {
+    "question": "What impact does plastic pollution have on marine life?",
+    "expected_keywords": ["toxic", "ingestion", "entanglement", "ecosystem"],
+    "group_id": "plastic_pollution"
+  },
+  {
+    "question": "What are effective methods for conserving water?",
+    "expected_keywords": ["rainwater harvesting", "efficient irrigation", "reduce waste", "recycling"],
+    "group_id": "water_conservation"
+  },
+  {
+    "question": "How does urbanization affect natural habitats?",
+    "expected_keywords": ["habitat loss", "fragmentation", "biodiversity", "pollution"],
+    "group_id": "urbanization"
+  }
+]
