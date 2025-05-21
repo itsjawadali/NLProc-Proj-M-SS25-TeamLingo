@@ -69,7 +69,7 @@ Implements the `Retriever` class:
 Implements the `Generator` class:
 
 * Uses `google/flan-t5-base`
-* `build_prompt()` - formats query + context into a prompt
+* `build_prompt(chunks, question)` - formats query + context into a prompt
 * `generate_answer()` - runs the model and returns output
 
 ### `file_loader.py`
@@ -90,9 +90,23 @@ Logs each query and answer as JSONL with:
 * answer
 * group\_id (optional)
 
-### `test_generator.py` / `test_retriever.py`
+## 🧪 Evaluation (evaluation/)
 
-Automated test scripts using known inputs and outputs.
+test_retriever.py
+
+Checks chunk relevance + FAISS distance
+
+test_generator.py
+
+Tests generation quality on fixed prompt
+
+test_batch.py
+
+Loads test_inputs.json, runs full pipeline
+
+Checks whether answer is grounded in context
+
+Prints ✅ or ❌
 
 ---
 
