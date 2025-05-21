@@ -1,115 +1,124 @@
-# RAG Project – Summer Semester 2025
-
-## Overview
-This repository hosts the code for a semester-long project on building and experimenting with Retrieval-Augmented Generation (RAG) systems. we have started with a shared baseline and then explore specialized variations in teams.
-
-## Structure
-- `baseline/`: Common starter system (retriever + generator)
-- `experiments/`: Each team's independent exploration
-- `evaluation/`: Common tools for comparing results
-- `utils/`: Helper functions shared across code
-
-## Getting Started
-1. Clone the repo
-2. `cd baseline/`
-3. Install dependencies: `pip install -r ../requirements.txt`
-
-
 # Document-Retriever and Generator Pipeline
 
-This project implements a full pipeline for document retrieval and question answering using vector similarity search and a lightweight language model. It includes tools for loading documents, retrieving relevant content using FAISS + SentenceTransformers, generating answers using FLAN-T5, and evaluating the system.
+This project implements a complete question-answering pipeline by combining document retrieval and language generation. It allows a user to input natural language queries and receive relevant, context-grounded answers based on information from local documents (.txt and .pdf). The system uses sentence embeddings with FAISS for similarity search and FLAN-T5 for answer generation. This is a lightweight, CPU-friendly prototype suitable for local NLP experimentation.
 
 ---
 
-## Project Structure
+## 🌍 Overall Project Goal
+
+To build a pipeline that:
+
+* Accepts unstructured documents (.txt, .pdf)
+* Chunks and indexes them using FAISS and Sentence Transformers
+* Retrieves relevant content given a question
+* Generates a natural language answer using a pre-trained language model
+* Logs the process for reproducibility and evaluation
+
+---
+
+## 📁 Folder and File Overview
 
 ```
 NLProc-Proj-M-SS25-main/
 ├── baseline/
-│   ├── pipeline.py               # Main entry point combining retriever + generator
+│   ├── pipeline.py               # Orchestrates the entire pipeline
 │   ├── generator/
-│   │   ├── generator.py          # Generator class for building prompts and generating answers
+│   │   ├── generator.py          # Generator class using FLAN-T5
 │   ├── retriever/
-│   │   ├── retriever.py          # Retriever class using FAISS and SentenceTransformers
+│   │   ├── retriever.py          # Retriever class using FAISS + embeddings
 │   ├── data/
-│   │   ├── sample.txt            # Sample text document for testing
-│   │   ├── sample.pdf            # Sample PDF document for testing
+│   │   ├── sample.txt            # Sample text file for input
+│   │   ├── sample.pdf            # Sample PDF file for input
 ├── utils/
-│   ├── file_loader.py            # Functions to load .txt and .pdf files
-│   ├── logger.py                 # Logs pipeline queries and outputs to JSONL
+│   ├── file_loader.py            # File loaders for .txt and .pdf
+│   ├── logger.py                 # Logs the Q&A process to a .jsonl file
 ├── evaluation/
-│   ├── test_generator.py         # Test script for evaluating generation
-│   ├── test_retriever.py         # Test script for retrieval functionality
-│   ├── test_inputs.json          # Known Q&A pairs for testing
+│   ├── test_generator.py         # Tests for the generator
+│   ├── test_retriever.py         # Tests for the retriever
+│   ├── test_inputs.json          # Example Q&A pairs for batch testing
 ├── specialization/
-│   ├── specialization.py         # Any topic-specialized models or retrieval extensions
-├── requirements.txt              # Python dependencies
+│   ├── specialization.py         # Place for future topic-specific customization
+├── requirements.txt              # Python dependency list
 ├── README.md                     # This file
 ```
 
 ---
 
-## Functionality Overview
+## 🧠 Key Functionalities
 
-### 1. Retriever (`retriever.py`)
+### `baseline/pipeline.py`
 
-* **Class:** `Retriever`
-* **Main Methods:**
+Coordinates all components of the pipeline:
 
-  * `add_documents(docs)`: Accepts list of text documents, chunks and embeds them.
-  * `query(question)`: Returns top-K similar text chunks using FAISS and cosine similarity.
-  * `save(path)`: Save FAISS index and metadata.
-  * `load(path)`: Load saved FAISS index.
-* **Internals:**
+* Loads and indexes documents
+* Handles query input
+* Retrieves relevant document chunks
+* Builds prompt and generates answer
+* Logs everything
 
-  * Uses `sentence-transformers/all-MiniLM-L6-v2` for sentence embeddings.
-  * Handles document chunking into 100–150 word sections.
+### `retriever.py`
 
-### 2. Generator (`generator.py`)
+Implements the `Retriever` class:
 
-* **Class:** `Generator`
-* **Main Methods:**
+* `add_documents()` - loads and chunks documents
+* `query()` - retrieves relevant chunks using FAISS + Sentence Transformers
+* `save()` / `load()` - save/load FAISS index
 
-  * `build_prompt(context, question)`: Formats a natural language prompt using retrieved chunks.
-  * `generate_answer(prompt)`: Uses HuggingFace's `flan-t5-base` to generate an answer.
-* **Model:** `google/flan-t5-base` (runs on CPU)
+### `generator.py`
 
-### 3. File Loader (`file_loader.py`)
+Implements the `Generator` class:
 
-* Supports `.txt` and `.pdf` document formats.
-* Uses PyMuPDF (`fitz`) for PDF parsing.
+* Uses `google/flan-t5-base`
+* `build_prompt()` - formats query + context into a prompt
+* `generate_answer()` - runs the model and returns output
 
-### 4. Logger (`logger.py`)
+### `file_loader.py`
 
-* Logs each query as a JSON object with:
+Loads document content:
 
-  * question
-  * retrieved\_chunks
-  * prompt
-  * generated\_answer
-  * timestamp
-  * group\_id
-* Output file: `logs.jsonl`
+* `load_text_file()` - reads plain text
+* `load_pdf()` - parses PDFs using `fitz`
 
-### 5. Test Scripts
+### `logger.py`
 
-* `test_generator.py`: Validates generation from sample documents.
-* `test_retriever.py`: Tests retrieval functionality.
-* `test_inputs.json`: Stores known questions with expected answers.
+Logs each query and answer as JSONL with:
+
+* timestamp
+* question
+* chunks
+* prompt
+* answer
+* group\_id (optional)
+
+### `test_generator.py` / `test_retriever.py`
+
+Automated test scripts using known inputs and outputs.
 
 ---
 
-## Running the Project
+## 🚀 How to Run the Project
 
-### Setup
+### 1. Clone the Repository
 
-1. **Install dependencies**
+```bash
+git clone [https://github.com/itsjawadali/NLProc-Proj-M-SS25-TeamLingo.git]
+cd NLProc-Proj-M-SS25-main
+```
+
+### 2. Set Up a Virtual Environment
+
+```bash
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+```
+
+### 3. Install Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-2. **Run Pipeline**
+### 4. Run the Full Pipeline
 
 ```bash
 python -m baseline.pipeline
@@ -117,75 +126,18 @@ python -m baseline.pipeline
 
 This will:
 
-* Load documents from `baseline/data/sample.txt` and `sample.pdf`
-* Add them to the FAISS index
-* Run a sample query
-* Retrieve matching chunks
-* Build a prompt
-* Generate an answer using FLAN-T5
-* Log the output to `logs.jsonl`
+* Load sample text and PDF files
+* Embed and index them
+* Query with a sample question
+* Generate and display an answer
+* Log the entire process
 
-### Example Output
+---
 
-```
+## 🧪 Example Output
+
+```bash
 Question: How is AI used in healthcare?
 Answer: predict patient outcomes, optimize treatments, and accelerate drug discovery.
 ```
 
-### Example Usage in Code (in pipeline.py)
-
-```python
-from baseline.retriever.retriever import Retriever
-from baseline.generator.generator import Generator
-from utils.file_loader import load_text_file, load_pdf
-from utils.logger import log_query
-
-r = Retriever()
-g = Generator()
-
-# Load documents
-docs = [load_text_file("baseline/data/sample.txt"),
-        load_pdf("baseline/data/sample.pdf")]
-
-r.add_documents(docs)
-query = "How is AI used in healthcare?"
-chunks = r.query(query)
-prompt = g.build_prompt([c[0] for c in chunks], query)
-answer = g.generate_answer(prompt)
-log_query(query, chunks, prompt, answer)
-```
-
----
-
-## Requirements
-
-* Python >= 3.9
-* Required libraries:
-
-  * sentence-transformers
-  * faiss-cpu
-  * transformers
-  * PyMuPDF (fitz)
-  * scikit-learn
-  * tqdm
-
-Install using:
-
-```bash
-pip install -r requirements.txt
-```
-
----
-
-## Future Work
-
-* Improve grounding verification using named entity checks
-* Add web interface for QA
-* Integrate long-context models for better summarization
-* Add feedback-based retraining
-
----
-
-
-## Authors
-TeamLingo
