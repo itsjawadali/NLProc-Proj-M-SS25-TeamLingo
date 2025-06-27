@@ -123,7 +123,7 @@ python -m evaluation.test_batch
 
 📊 Current Evaluation Metrics
 Question Type	Precision	Recall	F1-Score	ROUGE-L Recall
-Numeric/List/Definition	1.00	0.67	0.80	-
+Numeric/List/Definition	1.00	0.52	0.69	-
 Explanation (Descriptive)	-	-	-	~0.15 (avg)
 
 Precision: Perfect, meaning no hallucinations.
