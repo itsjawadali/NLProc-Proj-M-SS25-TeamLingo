@@ -14,7 +14,7 @@ Indexes these chunks using FAISS and Sentence Transformers.
 
 Retrieves contextually relevant information based on natural language queries.
 
-Generates concise and accurate natural-language answers using a pre-trained FLAN-T5 model.
+Generates concise natural-language answers using a pre-trained FLAN-T5-base model.
 
 Logs each query-answer interaction for transparency and evaluation.
 
@@ -28,7 +28,7 @@ NLProc-Proj-M-SS25-TeamLingo-main/
 │   ├── pipeline.py                   # Main orchestrator script
 │   ├── extractor.py                  # Post-processing (deduplication)
 │   ├── 📂 generator/
-│   │   ├── generator.py              # FLAN-T5 answer generation
+│   │   ├── generator.py              # FLAN-T5-base answer generation
 │   │   └── utils.py                  # Prompt building and question classification
 │   └── 📂 retriever/
 │       └── retriever.py              # Retrieval using FAISS and embeddings
@@ -102,42 +102,25 @@ Prints detailed output and aggregated evaluation metrics.
 
 🚀 How to Run the Project
 1. Clone the Repository
-bash
-Copy
-Edit
-git clone <repo-url>
-cd NLProc-Proj-M-SS25-TeamLingo-main
+
 2. Set Up a Virtual Environment
-bash
-Copy
-Edit
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
+
 3. Install Dependencies
-bash
-Copy
-Edit
 pip install -r requirements.txt
-4. Build the Corpus
-bash
-Copy
-Edit
+
+5. Build the Corpus
 python scripts/build_corpus.py specialization/data corpus/chunks.jsonl
+
 5. Create the Index
-bash
-Copy
-Edit
 python scripts/create_indexes.py corpus/chunks.jsonl models
-6. Run the Pipeline (Single Query)
-bash
-Copy
-Edit
+
+7. Run the Pipeline (Single Query)
 python -m baseline.pipeline --question "How much ice did Greenland lose annually?"
-7. Perform Batch Evaluation
-bash
-Copy
-Edit
+8. Perform Batch Evaluation
 python -m evaluation.test_batch
+
 📊 Current Evaluation Metrics
 Question Type	Precision	Recall	F1-Score	ROUGE-L Recall
 Numeric/List/Definition	1.00	0.67	0.80	-
@@ -163,9 +146,7 @@ Domain-Specific Model Tuning: Fine-tuning FLAN-T5 on climate-focused Q&A pairs.
 Evaluation Enhancements: Semantic similarity metrics beyond keyword matching.
 
 🛠️ Key Commands Quick Reference
-bash
-Copy
-Edit
+
 # Build corpus
 python scripts/build_corpus.py specialization/data corpus/chunks.jsonl
 
