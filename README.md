@@ -1,4 +1,4 @@
-🌍 Climate Change Question-Answering System (Team Lingo)
+🌍 Environment and Climate Change Question-Answering System (Team Lingo)
 This project implements a comprehensive Retrieval-Augmented Generation (RAG) pipeline tailored specifically for answering natural language questions about climate change, grounded in authoritative scientific literature. It allows users to input queries in plain English and receive precise, contextually-supported answers from structured documents (PDF format).
 
 The system uses Sentence Transformers for embedding, FAISS for fast similarity-based retrieval, and FLAN-T5 for high-quality answer generation, making it suitable for effective and efficient NLP experimentation and real-world deployment.
