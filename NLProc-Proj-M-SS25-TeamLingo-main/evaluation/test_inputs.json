@@ -1,0 +1,54 @@
+[
+  {
+    "question": "What extreme weather events are increasing in frequency in New South Wales due to climate change?",
+    "expected_keywords": ["heat waves", "bushfires", "thunderstorms", "lightning strikes"]
+  },
+  {
+    "question": "What impact does climate change have on agriculture in New South Wales?",
+    "expected_keywords": ["higher average temperatures", "drought", "reduced agricultural output", "livestock challenges"]
+  },
+  {
+    "question": "Which renewable energy sources are mentioned as scalable solutions to climate change?",
+    "expected_keywords": ["solar", "wind", "geothermal", "tidal power"]
+  },
+  {
+    "question": "Which company is working on developing a zero-emission hydrogen-powered aircraft?",
+    "expected_keywords": ["Airbus"]
+  },
+  {
+    "question": "Describe the greenhouse effect and its role in Earth's climate system.",
+    "expected_keywords": ["infrared radiation", "greenhouse gases", "troposphere", "heat retention", "carbon dioxide"]
+  },
+  {
+    "question": "Explain how ocean acidification impacts coral reef ecosystems.",
+    "expected_keywords": ["pH decrease", "calcium carbonate", "reef biodiversity", "shell formation", "marine organisms"]
+  },
+  {
+    "question": "Describe the process of direct air carbon capture and its intended climate benefit.",
+    "expected_keywords": ["chemical sorbents", "CO2 extraction", "energy requirement", "carbon sequestration", "negative emissions"]
+  },
+  {
+    "question": "Explain the main feedback loops that amplify global warming.",
+    "expected_keywords": ["albedo effect", "water vapor feedback", "permafrost thaw", "ice melt", "carbon cycle"]
+  },
+   {
+    "question": "What types of sustainable materials or features are included in green buildings?",
+    "expected_keywords": ["natural ventilation", "renewable heating", "recyclable materials"]
+  },
+  {
+    "question": "What is the goal of direct air carbon capture technology, as described in the report?",
+    "expected_keywords": ["negative emissions", "remove co2", "atmosphere", "carbon capture"]
+  },
+  {
+    "question": "What impact does climate change have on agriculture in New South Wales?",
+    "expected_keywords": ["crop yields", "livestock", "drought", "agriculture"]
+  },
+    {
+    "question": "What is the reported global sea level rise since 1880?",
+    "expected_keywords": ["8-9 inches", "21-24 cm"]
+  },
+  {
+    "question": "Which marine organisms are most threatened by ocean acidification?",
+    "expected_keywords": ["coral", "molluscs", "plankton"]
+  }
+]
