@@ -1,0 +1,13 @@
+pdfplumber
+sentence-transformers
+faiss-cpu
+transformers
+torch
+numpy
+spacy
+rank_bm25
+rouge_score
+scikit-learn
+python-dotenv
+cerebras_cloud_sdk
+streamlit
