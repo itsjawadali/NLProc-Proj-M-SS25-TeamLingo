@@ -1,50 +1,45 @@
+# baseline/retriever/retriever.py
+
 import pickle
 import faiss
-from sentence_transformers import SentenceTransformer, CrossEncoder
+from sentence_transformers import SentenceTransformer
 
 class Retriever:
-    def __init__(
-        self,
-        index_path: str,
-        records_path: str,
-        bm25=None,
-        threshold: float = 0.0,
-        use_reranker: bool = False
-    ):
+    """
+    Encapsulates FAISS‐based retrieval of text chunks.
+    """
+    def __init__(self, index_path: str, records_path: str, threshold: float = 0.2):
+        # load FAISS index
         self.index = faiss.read_index(index_path)
+        # load the serialized records list
         with open(records_path, 'rb') as f:
             self.records = pickle.load(f)
+        # embedder for queries
         self.embedder = SentenceTransformer('all-MiniLM-L6-v2')
-        self.bm25 = bm25
+        # score cutoff
         self.threshold = threshold
-        self.use_reranker = use_reranker
-        if self.use_reranker:
-            self.cross_ranker = CrossEncoder("cross-encoder/ms-marco-MiniLM-L-12-v2")
 
     def embed(self, query: str):
-        emb = self.embedder.encode([query], convert_to_numpy=True)
-        return emb.astype('float32')
+        """
+        Embed a single string query into a normalized vector.
+        """
+        vec = self.embedder.encode(
+            [query],
+            convert_to_numpy=True,
+            normalize_embeddings=True
+        )
+        return vec.astype('float32')
 
     def get_top_k(self, query: str, k: int = 10):
-        emb = self.embed(query)
-        distances, indices = self.index.search(emb, k * 2)
-        candidates = []
-        for dist, idx in zip(distances[0], indices[0]):
+        """
+        Returns up to k records whose FAISS score >= threshold,
+        as a list of (record, score) tuples.
+        """
+        qv = self.embed(query)
+        dists, idxs = self.index.search(qv, k)
+        out = []
+        for dist, idx in zip(dists[0], idxs[0]):
             score = 1.0 / (1.0 + dist)
             if score >= self.threshold:
-                candidates.append({'record': self.records[idx], 'score': score})
-        candidates = sorted(candidates, key=lambda x: x['score'], reverse=True)[:k]
-
-        records = [c['record'] for c in candidates]
-        if self.use_reranker and records:
-            records = self.rerank(query, records)
-
-        scores = [c['score'] for c in candidates]
-        return list(zip(records, scores))
-
-    def rerank(self, query: str, records: list):
-        pairs = [(query, r.text if hasattr(r, 'text') else r.get('text', '')) for r in records]
-        rerank_scores = self.cross_ranker.predict(pairs)
-        combined = list(zip(records, rerank_scores))
-        combined.sort(key=lambda x: x[1], reverse=True)
-        return [r for r,_ in combined]
+                out.append((self.records[idx], score))
+        return out

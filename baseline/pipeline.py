@@ -2,11 +2,9 @@ import os, sys
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 import argparse
-import pickle
-import faiss
-from sentence_transformers import SentenceTransformer
-from generator.generator import Generator
-from generator.utils import (
+from baseline.retriever.retriever import Retriever
+from baseline.generator.generator import Generator
+from baseline.generator.utils import (
     build_prompt,
     classify_qtype,
     build_explanation_prompt
@@ -21,27 +19,6 @@ def _get_text(r):
         return r.text.strip()
     else:
         return str(r).strip()
-
-class Retriever:
-    def __init__(self, index_path, records_path, threshold=0.2):
-        self.index     = faiss.read_index(index_path)
-        with open(records_path, 'rb') as f:
-            self.records = pickle.load(f)
-        self.embedder  = SentenceTransformer('all-MiniLM-L6-v2')
-        self.threshold = threshold
-
-    def embed(self, q):
-        emb = self.embedder.encode([q], convert_to_numpy=True)
-        return emb.astype('float32')
-
-    def get_top_k(self, q, k=10):
-        dists, idxs = self.index.search(self.embed(q), k)
-        out = []
-        for dist, idx in zip(dists[0], idxs[0]):
-            score = 1.0 / (1.0 + dist)
-            if score >= self.threshold:
-                out.append((self.records[idx], score))
-        return out
 
 def answer_question(
     question: str,
