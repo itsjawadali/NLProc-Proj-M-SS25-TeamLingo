@@ -41,7 +41,7 @@ NLProc-Proj-M-SS25-TeamLingo-main/
 │
 ├── evaluation/
 │   ├── logs/
-│   │   └── log.jsonl                # Logs of questions and generated answers
+│   │   └── log.jsonl                # Logs of questions, retrieved chunks and generated answers
 │   └── test_batch.py                # Testing Dataset
     └── evaluation_metrics.py        # Implemeted evaluation metrics
     └── test_inputs.py               # Include dataset in json format containing questions and expected keywords for evaluation.
