@@ -6,6 +6,13 @@ The system supports input in plain English and produces precise, context-support
 
 ---
 
+## 👥 Team Members
+- Jawad Ali  
+- Saad Abdullah  
+- Bilal Ahmad
+
+---
+
 ## 🌟 Overall Project Goal
 
 To develop an end-to-end RAG pipeline that:
@@ -78,7 +85,7 @@ NLProc-Proj-M-SS25-TeamLingo-main/
 - Optional reranking using cross-encoder (`cross-encoder/ms-marco-MiniLM-L-12-v2`)
 
 ### 🔹 `generator.py`
-- Uses `google/flan-t5-base` for controlled, accurate answer generation
+- Uses `llama3.1` for controlled, accurate answer generation
 
 ### 🔹 `app.py`
 - UI of the model for Q&A and test-cases evaluation
@@ -147,7 +154,7 @@ python -m baseline.pipeline --question "How much ice did Greenland lose annually
 ```bash
 python -m evaluation.test_batch
 ```
-## 🧪 Evaluation Methods
+
 ### 8. Launch Streamlit UI
 ```bash
 streamlit run baseline/app.py
@@ -155,19 +162,4 @@ streamlit run baseline/app.py
 
 
 
-## 📗 Data Sources
 
-- **Primary Document**:
-  - *The Reality of Climate Change: Evidence, Impacts and Choices* (PDF)
-  - *Are we adapting to climate change* (PDF)
-  - *TFinancial climate risk a review of recent advances* (PDF)
-
----
-
-## 👥 Team Members
-
-- Jawad Ali  
-- Saad Abdullah  
-- Bilal Ahmad
-
----
