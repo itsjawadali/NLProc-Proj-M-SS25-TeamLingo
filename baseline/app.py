@@ -73,11 +73,11 @@ st.markdown(
 )
 
 # — Layout —
-st.set_page_config(page_title="Semantic QA System", layout="wide")
+st.set_page_config(page_title="TeamLingo RAG Pipeline", layout="wide")
 
 # Sidebar for mode selection
 st.sidebar.title("🔧 Configuration")
-mode = st.sidebar.radio("Select Mode:", ["🔍 Ask a Question", "🧪 Evaluate on Test Set"])
+mode = st.sidebar.radio("Select Mode:", ["🧪 Evaluate on Test Set", "🔍 Ask a Question", ])
 
 # — Add some top padding to the sidebar section —
 st.sidebar.markdown("<div style='margin-top:50px;'></div>", unsafe_allow_html=True)
@@ -153,8 +153,8 @@ elif mode == "🧪 Evaluate on Test Set":
                     st.markdown("**Keyword Hits:**")
                     st.markdown(hits_md)
 
-        # Aggregate metrics
-        st.subheader("📊 Aggregate Metrics (non-explanation)")
+        # Evaluation metrics
+        st.subheader("📊 Evaluation Metrics")
         col1, col2, col3 = st.columns(3)
         col1.metric("Precision", f"{metrics['precision']:.2f}")
         col2.metric("Recall",    f"{metrics['recall']:.2f}")

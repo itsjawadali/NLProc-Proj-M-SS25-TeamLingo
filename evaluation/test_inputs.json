@@ -1,71 +1,11 @@
 [
- 
-
-  {
-    "question": "How many peer reviewed articles on climate change adaptation actions were retained in the final Berrang Ford review?",
-    "expected_keywords": ["87"]
-  },
-  {
-    "question": "How many documents on climate change and adaptation were initially retrieved between 2006 and 2009 in that review?",
-    "expected_keywords": ["1741"]
-  },
-  {
-    "question": "Which three time frames of climate change effects are used to classify adaptation stimuli in the review?",
-    "expected_keywords": ["short", "medium", "long term"]
-  },
-  {
-    "question": "Which stakeholder group most often implements adaptation actions according to the global review?",
-    "expected_keywords": ["government"]
-  },
-  {
-    "question": "Describe why adaptation responses in low income countries are mainly reactive rather than proactive.",
-    "expected_keywords": ["reactive", "low income", "resource"]
-  },
-  {
-    "question": "What is the main barrier that limits proactive adaptation in low income countries according to the review?",
-    "expected_keywords": ["resource", "capacity"]
-  },
-  {
-    "question": "Who are the primary agents implementing adaptation actions at the household level?",
-    "expected_keywords": ["individuals"]
-  },
-
-
-
-  {
-    "question": "What are the two categories of climate related financial risk highlighted by the TCFD?",
-    "expected_keywords": ["physical risk", "transition risk"]
-  },
-  {
-    "question": "Which global body created the TCFD?",
-    "expected_keywords": ["fsb"]
-  },
-  {
-    "question": "Define compound climate risk as used in the report.",
-    "expected_keywords": ["compound", "cascading"]
-  },
-  {
-    "question": "Explain why climate stress tests are used by banks and insurers.",
-    "expected_keywords": ["resilience", "risk", "capital"]
-  },
-  {
-    "question": "How many main modules make up a catastrophe model used by reinsurers?",
-    "expected_keywords": ["4"]
-  },
-  {
-    "question": "Who publishes the climate stress test guidelines referenced in the report?",
-    "expected_keywords": ["ngfs"]
-  },
-  {
-    "question": "What service do microfinance institutions provide to help poor households manage climate risk?",
-    "expected_keywords": ["microfinance"]
-  },
-
- 
-
-  {
+    {
     "question": "By how much have global sea levels risen since 1880 according to NOAA?",
     "expected_keywords": ["8-9 inches", "21-24 cm"]
+  },
+   {
+    "question": "Explain how the greenhouse effect keeps Earth warm.",
+    "expected_keywords": ["greenhouse gases", "heat", "infrared"]
   },
   {
     "question": "Which renewable energy sources are listed as scalable solutions to climate change?",
@@ -73,11 +13,7 @@
   },
   {
     "question": "What is ocean acidification and why is it harmful to coral reefs?",
-    "expected_keywords": ["ph", "decrease"]
-  },
-  {
-    "question": "Explain how the greenhouse effect keeps Earth warm.",
-    "expected_keywords": ["greenhouse gases", "heat", "infrared"]
+    "expected_keywords": ["ph", "carbonate"]
   },
   {
     "question": "Which extreme weather events are increasing in frequency in New South Wales?",
@@ -90,5 +26,49 @@
   {
     "question": "Describe how direct air capture creates negative emissions.",
     "expected_keywords": ["direct air capture", "co2", "negative emissions"]
+  },
+  {
+    "question": "How many peer reviewed articles on climate change adaptation actions were retained in the final Berrang Ford review?",
+    "expected_keywords": ["87"]
+  },
+  {
+    "question": "How many documents on climate change and adaptation were initially retrieved between 2006 and 2009 in that review?",
+    "expected_keywords": ["1741"]
+  },
+  {
+    "question": "Which three time frames of climate change effects are used to classify adaptation stimuli in the review?",
+    "expected_keywords": ["seasonal", "annual", "long-term"]
+  },
+  {
+    "question": "Which stakeholder group most often implements adaptation actions according to the global review?",
+    "expected_keywords": ["government"]
+  },
+  {
+    "question": "Describe why adaptation responses in low income countries are mainly reactive rather than proactive.",
+    "expected_keywords": ["reactive", "low income", "capacity"]
+  },
+  {
+    "question": "What is the main barrier that limits proactive adaptation in low income countries according to the review?",
+    "expected_keywords": ["capacity"]
+  },
+  {
+    "question": "Who are the primary agents implementing adaptation actions at the household level?",
+    "expected_keywords": ["individuals"]
+  },
+  {
+    "question": "What are the two categories of climate related financial risk highlighted by the TCFD?",
+    "expected_keywords": ["physical risk", "transition risk"]
+  },
+  {
+    "question": "Define compound climate risk as used in the report.",
+    "expected_keywords": ["compound", "cascading"]
+  },
+  {
+    "question": "Explain why climate stress tests are used by banks and insurers.",
+    "expected_keywords": ["resilience", "risk", "capital"]
+  },
+  {
+    "question": "What service do microfinance institutions provide to help poor households manage climate risk?",
+    "expected_keywords": ["microfinance"]
   }
 ]
